@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Usuarios</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="./img/compras.png" type="image/x-icon">
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <main>
+        <div id="app" class="container">
+            <br>
+            <br><br>
+            <div v-if="error">
+                <p>Lo sentimos, ha ocurrido un error. Por favor, inténtelo de nuevo más tarde.</p>
+            </div>
+            <div v-else>
+                <section v-if="cargando">
+                    <div class="spinner-border"></div>
+                    <p>Cargando ...</p>
+                </section>
+                <section v-else>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Usuario</th>
+                                    <th scope="col">Clave</th>
+                                    <th scope="col">Rol</th>
+                                    <th scope="col">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="usuario in usuarios" :key="usuario.id">
+                                    <td scope="row">{{usuario.id}}</td>
+                                    <td>{{usuario.usuario}}</td>
+                                    <td>{{usuario.clave}}</td>
+                                    <td>{{usuario.rol}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger" @click="eliminar(usuario.id)">Eliminar</button>
+                                        <button type="button" class="btn btn-warning" @click="hacerAdmin(usuario.id)" v-if="usuario.rol !== 1">Hacer Admin</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/barra.js"></script>
+    <script src="./js/footer.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./js/usuarios.js"></script>
+</body>
+
+</html>
